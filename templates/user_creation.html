@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block cotent %}
+
+{#    <h3>Welcome to {{ request.user }} Dashboard</h3>#}
+    {% if  message %}
+        {{ message }}
+    {% endif %}
+    <form action="{% url 'marks_system:user_creation' %}" method="post">{% csrf_token %}
+        <table style=" text-align: left">
+
+            {{ UserCreationForm.as_p }}
+
+            {% if request.user.is_superuser %}
+                <label style="margin-right: 42px">User role:</label>
+                <select name="user_type"> user_type
+                  <option selected value="superadmin">Superadmin</option>
+                </select>
+            {% elif request.user.is_superadmin %}
+                <label style="margin-right: 42px">User role:</label>
+                <select name="user_type"> user_type
+                  <option selected value="principal">Principal</option>
+                </select>
+            {% elif request.user.is_principal  %}
+                <label style="margin-right: 42px">User role:</label>
+                <select name="user_type">
+                  <option selected value="Select" disabled>Select</option>
+                  <option value="HOD">HOD</option>
+                  <option value="Staff">Staff</option>
+                </select>
+            {% elif request.user.is_hod  %}
+                <label style="margin-right: 42px">User role:</label>
+                <select name="user_type">
+                  <option selected value="Select" disabled>Select</option>
+                  <option value="Student">Student</option>
+                  <option value="Staff">Staff</option>
+                </select>
+            {% elif request.user.is_staff  %}
+                <label style="margin-right: 42px">User role:</label>
+                <select name="user_type">
+                  <option value="Student">Student</option>
+                </select>
+            {% endif %}
+        </table>
+        <input style="margin-top: 20px;margin-left: 100px" type="submit" value="Create user">
+    </form>
+{% endblock %}
+

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block cotent %}
+    {% if message %}
+        {{ message }}
+    {% endif %}
+        <a style="text-decoration: none" href="{% url 'marks_system:students_marklist' %}" >Students marklist</a>
+
+    <table border="1">
+        <tr>
+            <th>Student Name</th>
+            <th>Department</th>
+            <th>Semester</th>
+            <th>Tamil</th>
+            <th>English</th>
+            <th>Maths</th>
+            <th>Science</th>
+            <th>Social Science</th>
+            <th>Total</th>
+            <th>Added by</th>
+            <th>Delete</th>
+        </tr>
+{#        for details in students_list():#}
+{#        user_dept = details.department#}
+{#        print(user_dept.department_name)#}
+        {% for details in students_list %}
+            <tr>
+                <td align="center"><a style="text-decoration: none" href="{% url 'marks_system:update_marks' details.pk %}"> {{ details.student_name }}</a></td>
+                <td align="center">{{ details.department.department_name }} </td>
+                <td align="center">{{ details.semester }}</td>
+                <td align="center"> {{ details.tamil }}</td>
+                <td align="center"> {{ details.english }}</td>
+                <td align="center"> {{ details.maths }}</td>
+                <td align="center"> {{ details.science }}</td>
+                <td align="center"> {{ details.socialscience }}</td>
+                <td align="center"> {{ details.total_marks }}</td>
+                <td align="center"> {{ details.created_by }}</td>
+                <td align="center"><a href="{% url 'marks_system:delete_student' details.pk %}"> [x]</a></td>
+            </tr>
+        {% endfor %}
+        &nbsp;&nbsp;
+    </table>
+   <h3><a style="text-decoration: none; margin-top: 10px;float:left;" href="{% url 'marks_system:add_students_marks' %}" >Add another student's marks</a></h3>
+{% endblock %}

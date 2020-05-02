@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block cotent %}
+    {% if  message %}
+        {{ message }}
+    {% endif %}
+     <h3>"{{ edit_student.student_name }}" details are below:</h3>
+    <form action="{% url 'marks_system:update_marks' pk=edit_student.id %}" method="post">{% csrf_token %}
+       <table style="text-align: left">
+           {{ editform.as_table }}
+       </table>
+        <input type="submit" style="margin:2mm 4cm" value="ADD">
+    </form>
+    <a style="text-decoration: none" href="{% url 'marks_system:students_marklist' %}" >Students marklist</a>
+
+{% endblock %}

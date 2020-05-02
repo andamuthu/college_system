@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Welcome to Student's Marks System</h1>
+
+
+<form action="{% url 'marks_system:login' %}" method="post">{% csrf_token %}
+    {{ login_form.as_p }}
+    <input type="submit" value="Login">
+</form>
+
+{%if message %}
+    {{ message }}
+{% endif %}
+
+<br>
+{#<a href="/students_details/signup">Signup</a> &nbsp;&nbsp;#}
+{#<a href="{% url 'marks_system' %}">Home</a>#}
+</body>
+</html>
+

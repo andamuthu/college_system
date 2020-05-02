@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block cotent %}
+    <h2>Welcome to Dashboard</h2>
+    <h3>
+        <a style="text-decoration: none" href="{% url 'marks_system:user_creation' %}" >Create user</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a style="text-decoration: none" href="{% url 'marks_system:department_creation' %}" >Create Department</a>&nbsp;&nbsp;&nbsp;
+        <a style="text-decoration: none" href="{% url 'marks_system:add_students_marks' %}" >Add student's marks</a>&nbsp;&nbsp;
+        <a style="text-decoration: none" href="{% url 'marks_system:students_marklist' %}" >Students marklist</a>
+
+    </h3>
+{% endblock %}
+

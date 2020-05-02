@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h3>
+         Hi {{ request.user}} &nbsp;&nbsp;
+         <a href="{%url 'marks_system:dashboard'%}">Dashboard</a>&nbsp;&nbsp;
+        <a href="{%url 'marks_system:logout' %}">Logout</a>&nbsp;&nbsp;&nbsp;
+         Last logined : {{ request.user.last_login }}
+     </h3>
+    {% block cotent %}
+
+    {% endblock %}
+</body>
+</html>
+
